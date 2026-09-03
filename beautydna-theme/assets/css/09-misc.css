@@ -1,0 +1,28 @@
+/* =========================================================================
+   BEAUTYDNA — GENERIC PAGES, POSTS, 404, WISHLIST
+   ========================================================================= */
+
+.bdna-page__inner{ max-width: 760px; }
+.bdna-page__header{ margin-bottom: var(--bdna-space-6); }
+.bdna-page__content{ font-size: var(--bdna-fs-base); line-height: var(--bdna-leading-normal); color: var(--bdna-text-muted); }
+.bdna-page__content h2{ font-size: var(--bdna-fs-xl); margin-block: var(--bdna-space-6) var(--bdna-space-3); color: var(--bdna-text); }
+.bdna-page__content h3{ font-size: var(--bdna-fs-lg); margin-block: var(--bdna-space-5) var(--bdna-space-2); color: var(--bdna-text); }
+.bdna-page__content p{ margin-bottom: var(--bdna-space-4); }
+.bdna-page__content ul, .bdna-page__content ol{ margin-bottom: var(--bdna-space-4); padding-left: 1.4em; list-style: disc; }
+.bdna-page__content a{ text-decoration: underline; }
+.bdna-single-post__media{ margin-bottom: var(--bdna-space-6); aspect-ratio: 16/9; overflow: hidden; }
+.bdna-single-post__media img{ width: 100%; height: 100%; object-fit: cover; }
+
+.bdna-generic-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--bdna-space-6); }
+.bdna-post-card img, .bdna-post-card .bdna-placeholder{ aspect-ratio: 1; object-fit: cover; margin-bottom: var(--bdna-space-3); }
+.bdna-post-card h2{ font-size: var(--bdna-fs-md); margin-bottom: 0.4rem; }
+.bdna-post-card p{ font-size: var(--bdna-fs-sm); color: var(--bdna-text-muted); }
+
+.bdna-404{ text-align: center; max-width: 560px; margin-inline: auto; padding-block: var(--bdna-space-10); }
+.bdna-404 .bdna-lede{ margin-inline: auto; margin-block: var(--bdna-space-4) var(--bdna-space-6); }
+
+#bdna-wishlist-empty{ text-align: center; padding-block: var(--bdna-space-8); margin-inline: auto; }
+
+@media (max-width: 780px){
+  .bdna-generic-grid{ grid-template-columns: repeat(2, 1fr); }
+}

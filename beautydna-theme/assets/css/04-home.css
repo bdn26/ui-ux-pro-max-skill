@@ -1,0 +1,154 @@
+/* =========================================================================
+   BEAUTYDNA — HOMEPAGE
+   ========================================================================= */
+
+.bdna-section-heading{ margin-bottom: var(--bdna-space-6); }
+.bdna-section-heading--split{ display: flex; align-items: flex-end; justify-content: space-between; gap: var(--bdna-space-4); }
+.bdna-section-heading--center{ text-align: center; }
+.bdna-section-heading--center .bdna-lede{ margin-inline: auto; }
+.bdna-eyebrow--inverse{ color: var(--bdna-nude); }
+.bdna-inverse{ background: var(--bdna-charcoal); color: var(--bdna-ivory); }
+.bdna-inverse h2, .bdna-inverse h3{ color: var(--bdna-ivory); }
+.bdna-inverse .bdna-lede{ color: var(--bdna-nude); }
+
+/* ---- Hero ---------------------------------------------------------------- */
+.bdna-hero{
+  position: relative;
+  min-height: min(92vh, 920px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--bdna-ivory);
+}
+.bdna-hero__media{ position: absolute; inset: -6% -6%; z-index: 0; }
+.bdna-hero__media img,
+.bdna-hero__media .bdna-placeholder{ width: 100%; height: 100%; object-fit: cover; }
+.bdna-hero__scrim{
+  position: absolute; inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(33,29,26,0.72) 0%, rgba(33,29,26,0.15) 55%, rgba(33,29,26,0.28) 100%);
+}
+.bdna-hero__content{ position: relative; z-index: 2; padding-block: var(--bdna-space-8); max-width: 780px; }
+.bdna-hero__heading{
+  font-size: clamp(2.75rem, 6vw + 1rem, var(--bdna-fs-5xl));
+  line-height: 0.96;
+  margin-block: var(--bdna-space-3);
+  color: var(--bdna-ivory);
+}
+.bdna-hero__lede{ font-size: var(--bdna-fs-md); max-width: 46ch; color: var(--bdna-nude); margin-bottom: var(--bdna-space-5); }
+.bdna-hero__ctas{ display: flex; flex-wrap: wrap; gap: var(--bdna-space-3); }
+.bdna-hero__scroll-cue{
+  position: absolute; bottom: var(--bdna-space-5); left: 50%; z-index: 2;
+  width: 1px; height: 42px;
+  background: linear-gradient(180deg, rgba(250,247,242,0.9), transparent);
+}
+
+/* ---- Category grid --------------------------------------------------------- */
+.bdna-category-grid__row{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--bdna-space-4);
+}
+.bdna-category-card{ display: block; }
+.bdna-category-card__media{ aspect-ratio: 4/5; overflow: hidden; margin-bottom: var(--bdna-space-3); }
+.bdna-category-card__media img,
+.bdna-category-card__media .bdna-placeholder{ width: 100%; height: 100%; object-fit: cover; transition: transform var(--bdna-duration-slow) var(--bdna-ease); }
+.bdna-category-card:hover .bdna-category-card__media img,
+.bdna-category-card:hover .bdna-category-card__media .bdna-placeholder{ transform: scale(1.05); }
+.bdna-category-card__body h3{ font-size: var(--bdna-fs-md); letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+.bdna-category-card__body p{ font-size: var(--bdna-fs-xs); color: var(--bdna-text-muted); margin-bottom: 0.6rem; }
+
+/* ---- Shop by concern ------------------------------------------------------- */
+.bdna-concern__row{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--bdna-space-3);
+}
+.bdna-concern-card{ position: relative; display: block; aspect-ratio: 3/4; overflow: hidden; }
+.bdna-concern-card .bdna-placeholder{ height: 100%; transition: transform var(--bdna-duration-slow) var(--bdna-ease); }
+.bdna-concern-card:hover .bdna-placeholder{ transform: scale(1.06); }
+.bdna-concern-card::after{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(33,29,26,0.65) 0%, transparent 55%);
+}
+.bdna-concern-card__label{
+  position: absolute; left: var(--bdna-space-3); right: var(--bdna-space-3); bottom: var(--bdna-space-3);
+  z-index: 1;
+  color: var(--bdna-ivory);
+  font-size: var(--bdna-fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--bdna-tracking-mid);
+  text-transform: uppercase;
+}
+
+/* ---- Featured product split ------------------------------------------------- */
+.bdna-featured-product__grid{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--bdna-space-8);
+  align-items: center;
+}
+.bdna-featured-product__media img,
+.bdna-featured-product__media .bdna-placeholder{ width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.bdna-featured-product__content{ max-width: 480px; }
+.bdna-featured-product__rating{ display: flex; align-items: center; gap: 0.5rem; margin-block: var(--bdna-space-3); }
+.bdna-featured-product__story{ margin-bottom: var(--bdna-space-5); }
+.bdna-featured-product__benefits{ margin-bottom: var(--bdna-space-5); }
+.bdna-featured-product__benefits li{
+  padding-left: 1.4em;
+  position: relative;
+  margin-bottom: 0.6rem;
+  font-size: var(--bdna-fs-sm);
+  color: var(--bdna-text-muted);
+}
+.bdna-featured-product__benefits li::before{ content: "—"; position: absolute; left: 0; color: var(--bdna-blush-deep); }
+.bdna-featured-product__price{ font-family: var(--bdna-font-display); font-size: var(--bdna-fs-xl); margin-bottom: var(--bdna-space-5); }
+.bdna-featured-product__cta{ display: flex; align-items: center; gap: var(--bdna-space-5); }
+
+/* ---- Brand story ------------------------------------------------------------- */
+.bdna-brand-story__grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; }
+.bdna-brand-story__media img, .bdna-brand-story__media .bdna-placeholder{ width: 100%; height: 100%; min-height: 480px; object-fit: cover; }
+.bdna-brand-story__content{ display: flex; flex-direction: column; justify-content: center; padding: var(--bdna-space-8); max-width: 560px; }
+.bdna-brand-story__body{ margin-block: var(--bdna-space-4) var(--bdna-space-6); color: var(--bdna-text-muted); max-width: 52ch; }
+
+/* ---- Ingredients ------------------------------------------------------------- */
+.bdna-ingredients__row{ display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--bdna-space-5); }
+.bdna-ingredient-card__media{ aspect-ratio: 1; overflow: hidden; margin-bottom: var(--bdna-space-3); }
+.bdna-ingredient-card h3{ font-size: var(--bdna-fs-md); margin-bottom: 0.4rem; color: var(--bdna-ivory); }
+.bdna-ingredient-card p{ font-size: var(--bdna-fs-xs); color: var(--bdna-nude); line-height: var(--bdna-leading-normal); }
+
+/* ---- Testimonials -------------------------------------------------------------- */
+.bdna-testimonials__row{ display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--bdna-space-6); }
+.bdna-testimonial-card{ background: var(--bdna-bg-alt); padding: var(--bdna-space-6); border-radius: var(--bdna-radius-md); }
+.bdna-testimonial-card blockquote{ font-family: var(--bdna-font-display); font-size: var(--bdna-fs-md); line-height: var(--bdna-leading-snug); margin-block: var(--bdna-space-4); }
+.bdna-testimonial-card figcaption{ display: flex; align-items: center; gap: var(--bdna-space-3); font-size: var(--bdna-fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--bdna-tracking-mid); }
+
+/* ---- Instagram grid -------------------------------------------------------------- */
+.bdna-instagram{ padding-block: var(--bdna-space-9) var(--bdna-space-9); }
+.bdna-instagram-grid{ display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--bdna-space-2); }
+.bdna-instagram-grid__tile{ display: block; overflow: hidden; }
+.bdna-instagram-grid__tile .bdna-placeholder{ transition: transform var(--bdna-duration-slow) var(--bdna-ease); }
+.bdna-instagram-grid__tile:hover .bdna-placeholder{ transform: scale(1.08); }
+
+/* ---- Responsive ------------------------------------------------------------------ */
+@media (max-width: 1080px){
+  .bdna-category-grid__row{ grid-template-columns: repeat(3, 1fr); }
+  .bdna-concern__row{ grid-template-columns: repeat(3, 1fr); }
+  .bdna-ingredients__row{ grid-template-columns: repeat(3, 1fr); }
+  .bdna-featured-product__grid{ gap: var(--bdna-space-6); }
+  .bdna-instagram-grid{ grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 780px){
+  .bdna-featured-product__grid,
+  .bdna-brand-story__grid{ grid-template-columns: 1fr; }
+  .bdna-brand-story__content{ padding: var(--bdna-space-6) var(--bdna-gutter); max-width: none; }
+  .bdna-brand-story__media img, .bdna-brand-story__media .bdna-placeholder{ min-height: 340px; }
+  .bdna-testimonials__row{ grid-template-columns: 1fr; }
+  .bdna-category-grid__row{ grid-template-columns: repeat(2, 1fr); }
+  .bdna-concern__row{ grid-template-columns: repeat(2, 1fr); }
+  .bdna-ingredients__row{ grid-template-columns: repeat(2, 1fr); }
+  .bdna-instagram-grid{ grid-template-columns: repeat(3, 1fr); }
+  .bdna-section-heading--split{ flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,79 @@
+/* =========================================================================
+   BEAUTYDNA — SHOP / CATEGORY ARCHIVE
+   ========================================================================= */
+
+.bdna-shop-header{
+  padding-block: var(--bdna-space-7) var(--bdna-space-6);
+  border-bottom: 1px solid var(--bdna-border);
+  margin-bottom: var(--bdna-space-6);
+}
+.bdna-shop-header__desc{ margin-top: var(--bdna-space-3); }
+.woocommerce-products-header__title{ margin-top: var(--bdna-space-2); }
+
+.bdna-shop-main{ min-width: 0; }
+
+.bdna-shop-filters__header{ display: none; }
+
+.bdna-filters-empty{ font-size: var(--bdna-fs-xs); color: var(--bdna-text-faint); line-height: var(--bdna-leading-normal); }
+.bdna-shop-filters__apply{ display: none; }
+
+/* WooCommerce's default price-filter widget styling */
+.price_slider_wrapper .ui-slider{ height: 3px; background: var(--bdna-border-strong); margin-block: var(--bdna-space-4); position: relative; }
+.price_slider_wrapper .ui-slider-handle{
+  position: absolute; top: -6px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--bdna-charcoal);
+  cursor: pointer;
+}
+.price_slider_wrapper .ui-slider-range{ position: absolute; height: 100%; background: var(--bdna-charcoal); }
+.price_slider_amount{ display: flex; align-items: center; justify-content: space-between; font-size: var(--bdna-fs-xs); }
+.price_slider_amount button{
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--bdna-charcoal);
+  border-radius: var(--bdna-radius-sm);
+  font-size: var(--bdna-fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--bdna-tracking-mid);
+}
+
+/* ---- No products found ------------------------------------------------------ */
+.woocommerce-info{
+  padding: var(--bdna-space-6);
+  background: var(--bdna-bg-alt);
+  text-align: center;
+  border-radius: var(--bdna-radius-md);
+}
+
+/* ---- Responsive: mobile filter drawer --------------------------------------- */
+@media (max-width: 1080px){
+  .bdna-shop-layout{ grid-template-columns: 1fr; }
+  .bdna-filter-toggle{ display: inline-flex; }
+
+  .bdna-shop-filters{
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: min(340px, 88vw);
+    background: var(--bdna-bg);
+    z-index: var(--bdna-z-drawer);
+    padding: var(--bdna-space-5);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform var(--bdna-duration-slow) var(--bdna-ease);
+    display: flex;
+    flex-direction: column;
+  }
+  .bdna-shop-filters.is-open{ transform: translateX(0); }
+  .bdna-shop-filters__header{
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: var(--bdna-space-4);
+    border-bottom: 1px solid var(--bdna-border);
+    margin-bottom: var(--bdna-space-4);
+  }
+  .bdna-shop-filters__apply{ display: block; margin-top: var(--bdna-space-5); }
+}
+
+@media (max-width: 560px){
+  .bdna-shop-toolbar{ flex-wrap: wrap; }
+  .bdna-shop-toolbar__count{ order: 3; width: 100%; }
+}

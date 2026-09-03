@@ -1,0 +1,112 @@
+/* =========================================================================
+   BEAUTYDNA — DESIGN TOKENS
+   Single source of truth for color, type, spacing and motion. Every other
+   stylesheet in this theme reads from these custom properties only — never
+   hard-code a hex value or a px gap in a component file.
+   ========================================================================= */
+
+:root{
+  /* ---- Color: neutral foundation ------------------------------------- */
+  --bdna-ivory:        #FAF7F2;
+  --bdna-cream:        #F3EDE3;
+  --bdna-nude:         #E6D6C3;
+  --bdna-nude-deep:    #CBB299;
+  --bdna-white:        #FFFFFF;
+  --bdna-charcoal:     #211D1A;
+  --bdna-charcoal-70:  #4A433D;
+  --bdna-charcoal-45:  #8A8079;
+  --bdna-border:       #E5DDD0;
+  --bdna-border-strong:#D8CBB8;
+
+  /* ---- Color: accent (used sparingly — CTAs, sale, hover, highlights) - */
+  --bdna-blush:        #B97A6C;
+  --bdna-blush-deep:   #96594C;
+  --bdna-blush-tint:   #F3E3DD;
+  --bdna-success:      #4F7A5B;
+  --bdna-error:        #B3413A;
+
+  /* ---- Surfaces ---------------------------------------------------- */
+  --bdna-bg:           var(--bdna-ivory);
+  --bdna-bg-alt:       var(--bdna-cream);
+  --bdna-bg-dark:      var(--bdna-charcoal);
+  --bdna-text:         var(--bdna-charcoal);
+  --bdna-text-muted:   var(--bdna-charcoal-70);
+  --bdna-text-faint:   var(--bdna-charcoal-45);
+  --bdna-text-on-dark: var(--bdna-ivory);
+
+  /* ---- Typography ---------------------------------------------------- */
+  --bdna-font-display: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --bdna-font-body:    "Inter", -apple-system, "Segoe UI", sans-serif;
+
+  --bdna-fs-2xs:  0.6875rem;  /* 11px — eyebrow labels, meta */
+  --bdna-fs-xs:   0.75rem;    /* 12px */
+  --bdna-fs-sm:   0.875rem;   /* 14px — nav, body small */
+  --bdna-fs-base: 1rem;       /* 16px — body */
+  --bdna-fs-md:   1.125rem;   /* 18px */
+  --bdna-fs-lg:   1.375rem;   /* 22px */
+  --bdna-fs-xl:   1.75rem;    /* 28px */
+  --bdna-fs-2xl:  2.25rem;    /* 36px */
+  --bdna-fs-3xl:  3rem;       /* 48px */
+  --bdna-fs-4xl:  4.25rem;    /* 68px */
+  --bdna-fs-5xl:  6rem;       /* 96px — hero, clamp()-ed down on mobile */
+
+  --bdna-tracking-wide:  0.14em;
+  --bdna-tracking-mid:   0.06em;
+  --bdna-leading-tight:  1.05;
+  --bdna-leading-snug:   1.25;
+  --bdna-leading-normal: 1.6;
+
+  /* ---- Spacing scale (8px base) --------------------------------------- */
+  --bdna-space-1:  0.25rem;
+  --bdna-space-2:  0.5rem;
+  --bdna-space-3:  0.75rem;
+  --bdna-space-4:  1rem;
+  --bdna-space-5:  1.5rem;
+  --bdna-space-6:  2rem;
+  --bdna-space-7:  3rem;
+  --bdna-space-8:  4rem;
+  --bdna-space-9:  6rem;
+  --bdna-space-10: 8rem;
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --bdna-container-max: 1440px;
+  --bdna-gutter: clamp(1.25rem, 4vw, 4rem);
+  --bdna-radius-sm: 2px;
+  --bdna-radius-md: 4px;
+  --bdna-header-h: 84px;
+  --bdna-announcement-h: 40px;
+
+  /* ---- Motion ------------------------------------------------------- */
+  --bdna-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --bdna-duration-fast: 160ms;
+  --bdna-duration-base: 280ms;
+  --bdna-duration-slow: 520ms;
+
+  /* ---- Elevation ------------------------------------------------------ */
+  --bdna-shadow-sm: 0 1px 2px rgba(33, 29, 26, 0.06);
+  --bdna-shadow-md: 0 8px 24px rgba(33, 29, 26, 0.08);
+  --bdna-shadow-lg: 0 24px 64px rgba(33, 29, 26, 0.14);
+
+  --bdna-z-header: 500;
+  --bdna-z-drawer: 700;
+  --bdna-z-modal: 800;
+  --bdna-z-toast: 900;
+}
+
+@media (max-width: 780px){
+  :root{
+    --bdna-header-h: 64px;
+    --bdna-fs-5xl: 3rem;
+    --bdna-fs-4xl: 2.5rem;
+    --bdna-fs-3xl: 2rem;
+    --bdna-fs-2xl: 1.625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  :root{
+    --bdna-duration-fast: 0ms;
+    --bdna-duration-base: 0ms;
+    --bdna-duration-slow: 0ms;
+  }
+}

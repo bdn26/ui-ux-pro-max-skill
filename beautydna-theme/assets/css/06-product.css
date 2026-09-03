@@ -1,0 +1,135 @@
+/* =========================================================================
+   BEAUTYDNA — SINGLE PRODUCT
+   ========================================================================= */
+
+.bdna-product__breadcrumbs{ padding-top: var(--bdna-space-4); }
+
+.bdna-product__layout{
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--bdna-space-8);
+  align-items: start;
+  padding-bottom: var(--bdna-space-8);
+}
+
+/* ---- Gallery -------------------------------------------------------------- */
+.bdna-product__gallery{ position: sticky; top: calc(var(--bdna-header-h) + var(--bdna-space-4)); }
+.woocommerce-product-gallery{ position: relative; }
+.woocommerce-product-gallery__wrapper{ margin: 0; }
+.woocommerce-product-gallery__image{ background: var(--bdna-bg-alt); overflow: hidden; margin-bottom: var(--bdna-space-3); }
+.woocommerce-product-gallery__image:not(:first-child){ display: none; } /* first image shown; slider JS (flexslider, enqueued by WC gallery support) manages the rest */
+.woocommerce-product-gallery img{ width: 100%; aspect-ratio: 4/5; object-fit: cover; cursor: zoom-in; }
+.flex-control-thumbs{ display: flex; gap: var(--bdna-space-2); flex-wrap: wrap; list-style: none; padding: 0; }
+.flex-control-thumbs li{ width: calc(25% - var(--bdna-space-2) * 3 / 4); }
+.flex-control-thumbs img{
+  aspect-ratio: 1;
+  object-fit: cover;
+  opacity: 0.6;
+  transition: opacity var(--bdna-duration-base) var(--bdna-ease);
+  cursor: pointer;
+}
+.flex-control-thumbs img.flex-active, .flex-control-thumbs img:hover{ opacity: 1; }
+
+/* WooCommerce gallery re-flows into a proper flexslider once its JS boots;
+   when JS is disabled/blocked, all images stack so nothing is lost. */
+.woocommerce-product-gallery.flexslider .woocommerce-product-gallery__image{ display: block; }
+
+/* ---- Summary / buy box ------------------------------------------------------ */
+.bdna-product__summary{ max-width: 560px; }
+.bdna-product__summary .product_title{ font-size: clamp(1.75rem, 2.4vw + 1rem, var(--bdna-fs-3xl)); margin-bottom: var(--bdna-space-3); }
+.bdna-product__summary .woocommerce-product-rating{ display: flex; align-items: center; gap: 0.6rem; margin-bottom: var(--bdna-space-4); }
+.bdna-product__summary .woocommerce-review-link{ font-size: var(--bdna-fs-xs); color: var(--bdna-text-muted); }
+.bdna-product__summary .price{
+  display: block;
+  font-family: var(--bdna-font-display);
+  font-size: var(--bdna-fs-2xl);
+  margin-bottom: var(--bdna-space-4);
+}
+.bdna-product__summary .price del{ color: var(--bdna-text-faint); font-size: 0.65em; margin-right: 0.5em; }
+.bdna-product__summary .price ins{ color: var(--bdna-blush-deep); text-decoration: none; }
+.bdna-product__summary .woocommerce-product-details__short-description{
+  color: var(--bdna-text-muted);
+  margin-bottom: var(--bdna-space-5);
+  line-height: var(--bdna-leading-normal);
+}
+
+/* Variations */
+table.variations{ width: 100%; margin-bottom: var(--bdna-space-4); }
+table.variations tr{ display: block; margin-bottom: var(--bdna-space-3); }
+table.variations label{ margin-bottom: 0.4rem; }
+table.variations select{
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--bdna-border-strong);
+  border-radius: var(--bdna-radius-sm);
+  background: var(--bdna-white);
+}
+.woocommerce-variation-price{ margin-bottom: var(--bdna-space-3); font-size: var(--bdna-fs-lg); }
+.reset_variations{ font-size: var(--bdna-fs-2xs); text-decoration: underline; }
+
+/* Add to cart row: quantity + buttons */
+.cart{ display: flex; flex-wrap: wrap; align-items: center; gap: var(--bdna-space-3); margin-bottom: var(--bdna-space-5); }
+.quantity{ display: inline-flex; align-items: stretch; border: 1px solid var(--bdna-border-strong); border-radius: var(--bdna-radius-sm); }
+.quantity .qty{
+  width: 56px;
+  text-align: center;
+  border: none;
+  -moz-appearance: textfield;
+}
+.quantity .qty::-webkit-inner-spin-button, .quantity .qty::-webkit-outer-spin-button{ -webkit-appearance: none; margin: 0; }
+.bdna-qty-btn{ width: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.single_add_to_cart_button{
+  flex: 1 1 220px;
+  padding: 1.1rem 2rem !important;
+  font-size: var(--bdna-fs-xs) !important;
+}
+.bdna-buy-now{ flex: 1 1 220px; }
+
+.bdna-product__wishlist{ display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: var(--bdna-space-4); font-size: var(--bdna-fs-xs); color: var(--bdna-text-muted); }
+.bdna-product__wishlist .bdna-wishlist-btn{ width: 32px; height: 32px; border: none; background: none; padding: 0; }
+
+.product_meta{ font-size: var(--bdna-fs-xs); color: var(--bdna-text-faint); padding-top: var(--bdna-space-4); border-top: 1px solid var(--bdna-border); }
+.product_meta > span{ display: block; margin-bottom: 0.3rem; }
+.product_meta a{ text-decoration: underline; }
+
+.woocommerce-product-gallery + .bdna-wishlist-btn,
+.bdna-product__summary .bdna-wishlist-btn{
+  position: static;
+  display: inline-flex;
+  width: auto; height: auto;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--bdna-border-strong);
+  border-radius: var(--bdna-radius-sm);
+  background: transparent;
+}
+
+/* Trust row */
+.bdna-product__trust{
+  display: flex;
+  flex-direction: column;
+  gap: var(--bdna-space-3);
+  margin-top: var(--bdna-space-6);
+  padding-top: var(--bdna-space-5);
+  border-top: 1px solid var(--bdna-border);
+}
+.bdna-trust-item{ display: flex; align-items: center; gap: 0.6rem; font-size: var(--bdna-fs-xs); color: var(--bdna-text-muted); }
+
+/* ---- Tabs section wrapper --------------------------------------------------- */
+.bdna-product__tabs{ padding-block: var(--bdna-space-8); border-top: 1px solid var(--bdna-border); }
+
+/* ---- Upsell / related / recently-viewed sections use .bdna-product-grid ----- */
+.up-sells, .related.products, .bdna-recently-viewed{ padding-block: var(--bdna-space-8); border-top: 1px solid var(--bdna-border); }
+.up-sells > h2, .related.products > h2{ font-family: var(--bdna-font-display); font-size: var(--bdna-fs-2xl); margin-bottom: var(--bdna-space-6); }
+
+/* ---- Responsive --------------------------------------------------------------- */
+@media (max-width: 1080px){
+  .bdna-product__layout{ grid-template-columns: 1fr; }
+  .bdna-product__gallery{ position: static; }
+  .bdna-product__summary{ max-width: none; }
+}
+
+@media (max-width: 560px){
+  .flex-control-thumbs li{ width: calc(20% - var(--bdna-space-2) * 4 / 5); }
+  .cart{ padding-bottom: 80px; } /* clear the sticky ATC bar */
+}

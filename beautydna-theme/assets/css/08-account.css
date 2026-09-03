@@ -1,0 +1,72 @@
+/* =========================================================================
+   BEAUTYDNA — MY ACCOUNT
+   Restyles WooCommerce's default My Account markup only (no template
+   overrides) so login, registration, orders, downloads, addresses and
+   edit-account all keep working exactly as WooCommerce ships them.
+   ========================================================================= */
+
+.woocommerce-account .bdna-container{ max-width: 1100px; padding-block: var(--bdna-space-7) var(--bdna-space-9); }
+
+.woocommerce-MyAccount-navigation ul{ display: flex; flex-direction: column; gap: 0.2rem; border-right: 1px solid var(--bdna-border); padding-right: var(--bdna-space-5); }
+.woocommerce-MyAccount-navigation li{ }
+.woocommerce-MyAccount-navigation li a{
+  display: block;
+  padding: 0.75rem 0;
+  font-size: var(--bdna-fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--bdna-tracking-mid);
+  text-transform: uppercase;
+  color: var(--bdna-text-muted);
+}
+.woocommerce-MyAccount-navigation li.is-active a,
+.woocommerce-MyAccount-navigation li a:hover{ color: var(--bdna-text); }
+.woocommerce-MyAccount-navigation-link--customer-logout a{ color: var(--bdna-blush-deep) !important; }
+
+.woocommerce-account .woocommerce{ display: grid; grid-template-columns: 220px 1fr; gap: var(--bdna-space-8); align-items: start; }
+.woocommerce-MyAccount-content{ min-width: 0; }
+.woocommerce-MyAccount-content > p:first-child{ font-size: var(--bdna-fs-md); margin-bottom: var(--bdna-space-5); }
+
+.woocommerce-orders-table{ width: 100%; border-collapse: collapse; }
+.woocommerce-orders-table th, .woocommerce-orders-table td{ padding: var(--bdna-space-3) var(--bdna-space-2); border-bottom: 1px solid var(--bdna-border); font-size: var(--bdna-fs-sm); text-align: left; }
+.woocommerce-orders-table__cell-order-status{ text-transform: capitalize; }
+.woocommerce-button.view{ border: 1px solid var(--bdna-charcoal); padding: 0.4rem 0.9rem; border-radius: var(--bdna-radius-sm); font-size: var(--bdna-fs-2xs); text-transform: uppercase; }
+
+.woocommerce-Addresses{ display: grid; grid-template-columns: 1fr 1fr; gap: var(--bdna-space-6); }
+.woocommerce-Address-title{ display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--bdna-space-3); }
+.woocommerce-Address-title h2{ font-size: var(--bdna-fs-md); }
+address{ font-style: normal; font-size: var(--bdna-fs-sm); line-height: var(--bdna-leading-normal); color: var(--bdna-text-muted); }
+
+.woocommerce-form-login, .woocommerce-form-register, .woocommerce-EditAccountForm{ max-width: 460px; }
+.woocommerce-form-login .form-row, .woocommerce-form-register .form-row, .woocommerce-EditAccountForm .form-row,
+.woocommerce-address-fields .form-row{ margin-bottom: var(--bdna-space-4); }
+.woocommerce-form-login input.input-text, .woocommerce-form-register input.input-text,
+.woocommerce-EditAccountForm input.input-text, .woocommerce-address-fields input.input-text,
+.woocommerce-address-fields select{
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--bdna-border-strong);
+  border-radius: var(--bdna-radius-sm);
+}
+.woocommerce-form-login .button, .woocommerce-form-register .button,
+.woocommerce-EditAccountForm .button, .woocommerce-address-fields .button{
+  padding: 1rem 2rem;
+  background: var(--bdna-charcoal);
+  color: var(--bdna-ivory);
+  font-size: var(--bdna-fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--bdna-tracking-mid);
+  text-transform: uppercase;
+  border-radius: var(--bdna-radius-sm);
+}
+.woocommerce-LostPassword{ margin-top: var(--bdna-space-3); font-size: var(--bdna-fs-xs); }
+
+.woocommerce-account .woocommerce-MyAccount-navigation + .woocommerce-MyAccount-content .woocommerce-notices-wrapper .woocommerce-message{
+  background: var(--bdna-blush-tint); color: var(--bdna-blush-deep); padding: var(--bdna-space-4); border-radius: var(--bdna-radius-sm); margin-bottom: var(--bdna-space-5); list-style: none;
+}
+
+@media (max-width: 780px){
+  .woocommerce-account .woocommerce{ grid-template-columns: 1fr; }
+  .woocommerce-MyAccount-navigation ul{ flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--bdna-border); padding-right: 0; padding-bottom: var(--bdna-space-3); gap: var(--bdna-space-4); }
+  .woocommerce-Addresses{ grid-template-columns: 1fr; }
+  .woocommerce-orders-table{ display: block; overflow-x: auto; }
+}
