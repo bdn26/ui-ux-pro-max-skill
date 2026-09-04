@@ -16,6 +16,7 @@ design is missing: a **knowledge** layer, a **taste** layer, and a **visual feed
 | 🧠 **Knowledge** | [`ui-ux-pro-max`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 84 UI styles, 192 color palettes, 73 font pairings, 99 UX rules, Core Web Vitals, 22 stacks — searchable, turned into a concrete design system |
 | 🎨 **Taste** | [`frontend-design`](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) (official Anthropic) | Forces a real aesthetic commitment before any CSS; kills "AI slop" defaults |
 | 🧩 **Components** | [`shadcn` MCP](https://ui.shadcn.com/docs/mcp) | Search/add production components by natural language |
+| 🖼️ **Image generation** | [`qwen-image` MCP](mcp-tools/qwen-image) | Generate/edit hero art, illustrations, and imagery in-loop via Qwen-Image (needs a MuAPI key) |
 | 👁️ **Visual feedback** | [`@playwright/mcp`](https://github.com/microsoft/playwright-mcp) + [`chrome-devtools-mcp`](https://github.com/ChromeDevTools/chrome-devtools-mcp) | Claude opens a real browser, screenshots, reads the console, exercises states, and fixes what it sees |
 | ✅ **Automated review** | `design-review` subagent + `/design-review` | 7-phase audit across viewports: WCAG AA, responsive, interaction states |
 
@@ -47,7 +48,9 @@ iterate** → run `/design-review`. See `docs/WORKFLOW.md` for a full walkthroug
 
 ```
 .
-├── .mcp.json                     # Playwright + Chrome DevTools + shadcn MCP servers
+├── .mcp.json                     # Playwright + Chrome DevTools + shadcn + Qwen Image MCP servers
+├── mcp-tools/
+│   └── qwen-image/                # Local MCP server: Qwen-Image generation/editing via MuAPI
 ├── CLAUDE.md                     # The design loop Claude follows (the "brain")
 ├── .claude/
 │   ├── settings.json             # Enables the MCP servers + safe permissions

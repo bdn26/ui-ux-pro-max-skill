@@ -23,8 +23,15 @@ then prints the two steps that must happen inside Claude Code.
 ## 3. Approve the MCP servers
 
 Open Claude Code in this directory. It reads `.mcp.json` and prompts you to approve the project
-MCP servers (**playwright**, **chrome-devtools**, **shadcn**). Approve them. `.claude/settings.json`
-already sets `enableAllProjectMcpServers: true`, so they load on start. Verify with `/mcp`.
+MCP servers (**playwright**, **chrome-devtools**, **shadcn**, **qwen-image**). Approve them.
+`.claude/settings.json` already sets `enableAllProjectMcpServers: true`, so they load on start.
+Verify with `/mcp`.
+
+> **qwen-image** needs one extra step: it's a local Python server, so install its dependency with
+> `pip install -r mcp-tools/qwen-image/requirements.txt`, and set `MUAPI_API_KEY` (get one at
+> <https://muapi.ai>) before Claude Code starts. The server itself starts fine without a key —
+> only its image-generation/editing tools fail until one is set. See
+> `mcp-tools/qwen-image/README.md` for details.
 
 That's it — `CLAUDE.md` defines the design loop and loads automatically.
 

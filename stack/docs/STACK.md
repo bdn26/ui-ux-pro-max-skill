@@ -8,6 +8,7 @@ AI design fails in three predictable ways. Each layer of this stack fixes one.
 | Vague, inconsistent tokens & patterns | Ground decisions in a real database | `ui-ux-pro-max` |
 | Never sees the result → ships broken UI | Give the agent eyes | Playwright / Chrome DevTools MCP |
 | Reinventing primitives | Pull proven components | shadcn MCP |
+| Placeholder imagery, no custom art | Generate/edit real imagery in-loop | `qwen-image` MCP |
 | "Looks fine to me" self-assessment | Independent, rigorous review | `design-review` subagent |
 
 ## 🧠 Knowledge — `ui-ux-pro-max`
@@ -38,6 +39,15 @@ Browse, search, and install shadcn/ui components (and other registries) by natur
 instead of hand-rolling accessible primitives. Best for React/Next/Vue/Svelte projects.
 
 - Docs: <https://ui.shadcn.com/docs/mcp> · Command: `npx shadcn@latest mcp`
+
+## 🖼️ Image generation — `qwen-image` MCP
+
+A local MCP server (`mcp-tools/qwen-image/`) that generates and edits imagery in-loop with
+[Qwen-Image](https://github.com/QwenLM/Qwen-Image) — hero art, illustrations, or instruction-based
+edits — instead of leaving a placeholder. Backed by [MuAPI](https://muapi.ai)'s hosted Qwen-Image
+model family; requires a `MUAPI_API_KEY`.
+
+- Repo: `mcp-tools/qwen-image/` (this repo) · Setup: `mcp-tools/qwen-image/README.md`
 
 ## 👁️ Visual feedback — Playwright MCP + Chrome DevTools MCP
 
