@@ -12,6 +12,11 @@
     "shadcn": {
       "command": "npx",
       "args": ["-y", "shadcn@latest", "mcp"]
+    },
+    "qwen-image": {
+      "command": "python3",
+      "args": ["mcp-tools/qwen-image/server.py"],
+      "env": { "MUAPI_API_KEY": "${MUAPI_API_KEY}" }
     }
   }
 }

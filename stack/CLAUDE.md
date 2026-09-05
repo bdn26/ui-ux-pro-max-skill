@@ -27,7 +27,9 @@ layer (what to build), a *taste* layer (making it distinctive), and a *feedback*
 
 3. **BUILD.** Implement with the chosen tokens. Match the surrounding code's conventions.
    For component-driven stacks, use the **shadcn** MCP to search/add components instead of
-   hand-rolling primitives.
+   hand-rolling primitives. When a surface needs custom imagery (hero art, illustrations,
+   edited photography) rather than a stock asset, use the **qwen-image** MCP to generate or
+   edit it in place.
 
 4. **SEE IT — Playwright / Chrome DevTools MCP.** You are not done when the code compiles.
    Open the page in a real browser, screenshot it, read the console, exercise interactive
@@ -57,6 +59,7 @@ layer (what to build), a *taste* layer (making it distinctive), and a *feedback*
 | Knowledge | `ui-ux-pro-max` skill | installed via `scripts/setup.sh` (plugin) |
 | Taste | `frontend-design` skill | installed via `scripts/setup.sh` (plugin) |
 | Component gen | `shadcn` MCP | `.mcp.json` |
+| Image generation | `qwen-image` MCP (needs `MUAPI_API_KEY`) | `.mcp.json`, `mcp-tools/qwen-image/` |
 | Visual feedback | `@playwright/mcp` + `chrome-devtools-mcp` | `.mcp.json` |
 | Automated review | `design-review` subagent + `/design-review` command | `.claude/agents`, `.claude/commands` |
 | Standalone audit | `scripts/design-audit.mjs` (multi-viewport screenshots) | `scripts/`, CI in `.github/workflows` |

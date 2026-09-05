@@ -10,6 +10,9 @@ test-results/
 playwright-report/
 .playwright/
 
+# Qwen Image MCP output (generated images)
+mcp-tools/qwen-image/output/
+
 # Local Claude Code state
 .claude/settings.local.json
 .claude/.session/
