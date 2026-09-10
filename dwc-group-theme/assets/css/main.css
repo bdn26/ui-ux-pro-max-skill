@@ -1,26 +1,27 @@
 /* =========================================================================
    DWC Group -- Design System
    Premium government/public-sector consulting aesthetic.
-   Navy / charcoal / white / soft gray, restrained electric-blue accent.
+   Ink / warm charcoal / cream / restrained copper accent.
    ========================================================================= */
 
 :root {
 	/* Brand (overridden by Customizer via inline <style> after this file) */
-	--dwc-navy: #0a1a33;
-	--dwc-navy-deep: #050e1e;
-	--dwc-charcoal: #1c1f26;
-	--dwc-accent: #2f5fff;
-	--dwc-accent-dark: #1f43c9;
+	--dwc-navy: #17140f;
+	--dwc-navy-deep: #0c0a07;
+	--dwc-charcoal: #362e27;
+	--dwc-accent: #bf5b2e;
+	--dwc-accent-dark: #9c4823;
+	--dwc-accent-soft: #e3966b;
 
-	/* Neutrals */
+	/* Neutrals -- warm-biased, not neutral gray, to sit with the copper accent */
 	--dwc-white: #ffffff;
-	--dwc-gray-50: #f7f8fa;
-	--dwc-gray-100: #eef0f4;
-	--dwc-gray-200: #dfe3e9;
-	--dwc-gray-300: #c3c9d3;
-	--dwc-gray-500: #6b7280;
-	--dwc-gray-700: #3d4451;
-	--dwc-ink: #12151c;
+	--dwc-gray-50: #f7f4ef;
+	--dwc-gray-100: #efe8df;
+	--dwc-gray-200: #ded2c3;
+	--dwc-gray-300: #c4b29b;
+	--dwc-gray-500: #8a7c6c;
+	--dwc-gray-700: #4a4038;
+	--dwc-ink: #1c1712;
 
 	/* Type */
 	--font-heading: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -167,7 +168,7 @@ section {
 }
 
 .eyebrow--light {
-	color: #7ea0ff;
+	color: var(--dwc-accent-soft);
 }
 
 .section-heading {
@@ -288,7 +289,7 @@ section {
 }
 
 .site-header.is-scrolled {
-	box-shadow: 0 8px 24px rgba(10, 26, 51, 0.06);
+	box-shadow: 0 8px 24px rgba(23, 20, 15, 0.06);
 }
 
 .site-header__inner {
@@ -498,11 +499,11 @@ body.mobile-nav-open {
 }
 
 .hero__grid span {
-	background: linear-gradient(150deg, rgba(47, 95, 255, 0.28), rgba(10, 26, 51, 0.6));
+	background: linear-gradient(150deg, rgba(191, 91, 46, 0.28), rgba(23, 20, 15, 0.6));
 }
 
 .hero__grid span:nth-child(3n) {
-	background: linear-gradient(150deg, rgba(47, 95, 255, 0.12), rgba(10, 26, 51, 0.75));
+	background: linear-gradient(150deg, rgba(191, 91, 46, 0.12), rgba(23, 20, 15, 0.75));
 }
 
 /* =========================================================================
@@ -533,7 +534,7 @@ body.mobile-nav-open {
 	width: 100%;
 	height: 100%;
 	background:
-		radial-gradient(circle at 25% 20%, rgba(47, 95, 255, 0.16), transparent 45%),
+		radial-gradient(circle at 25% 20%, rgba(191, 91, 46, 0.16), transparent 45%),
 		linear-gradient(135deg, var(--dwc-navy), var(--dwc-charcoal));
 	position: relative;
 }
@@ -597,7 +598,7 @@ body.mobile-nav-open {
 
 .service-card:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 20px 40px rgba(10, 26, 51, 0.08);
+	box-shadow: 0 20px 40px rgba(23, 20, 15, 0.08);
 	border-color: var(--dwc-gray-300);
 }
 
@@ -621,7 +622,7 @@ body.mobile-nav-open {
 	font-weight: 700;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: #7ea0ff;
+	color: var(--dwc-accent-soft);
 	margin-bottom: 1em;
 }
 
@@ -689,7 +690,7 @@ body.mobile-nav-open {
 .fraud-ai__pattern {
 	position: absolute;
 	inset: 0;
-	background-image: radial-gradient(circle at 85% 15%, rgba(47, 95, 255, 0.22), transparent 45%);
+	background-image: radial-gradient(circle at 85% 15%, rgba(191, 91, 46, 0.22), transparent 45%);
 	pointer-events: none;
 }
 
@@ -812,8 +813,8 @@ body.mobile-nav-open {
 }
 
 .tag--review {
-	background: rgba(47, 95, 255, 0.18);
-	color: #7ea0ff;
+	background: rgba(191, 91, 46, 0.18);
+	color: var(--dwc-accent-soft);
 }
 
 .tag--audit {
@@ -852,7 +853,7 @@ body.mobile-nav-open {
 
 .publication-card:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 20px 40px rgba(10, 26, 51, 0.08);
+	box-shadow: 0 20px 40px rgba(23, 20, 15, 0.08);
 }
 
 .publication-card__media {
@@ -1169,7 +1170,7 @@ body.mobile-nav-open {
 }
 
 .service-full--featured .dwc-list-check li::before {
-	color: #7ea0ff;
+	color: var(--dwc-accent-soft);
 }
 
 .service-full__grid {

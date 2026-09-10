@@ -81,9 +81,9 @@ add_filter( 'script_loader_tag', 'dwc_group_defer_scripts', 10, 3 );
  * Output brand colors + a couple of layout dials from the Customizer as CSS custom properties.
  */
 function dwc_group_dynamic_styles() {
-	$primary = get_theme_mod( 'dwc_color_primary', '#0a1a33' );
-	$accent  = get_theme_mod( 'dwc_color_accent', '#2f5fff' );
-	$charcoal = get_theme_mod( 'dwc_color_charcoal', '#1c1f26' );
+	$primary = get_theme_mod( 'dwc_color_primary', '#17140f' );
+	$accent  = get_theme_mod( 'dwc_color_accent', '#bf5b2e' );
+	$charcoal = get_theme_mod( 'dwc_color_charcoal', '#362e27' );
 	?>
 	<style id="dwc-group-dynamic-styles">
 		:root {

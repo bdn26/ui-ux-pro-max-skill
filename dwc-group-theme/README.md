@@ -90,7 +90,7 @@ dwc-group-theme/
 
 ## Design system
 
-- **Colors:** deep navy (`--dwc-navy`), charcoal (`--dwc-charcoal`), white, soft gray, with a restrained electric-blue accent (`--dwc-accent`). All three are editable via the Customizer and exposed as CSS custom properties.
+- **Colors:** near-black ink (`--dwc-navy`), warm charcoal (`--dwc-charcoal`), white, warm cream/taupe neutrals, with a restrained copper accent (`--dwc-accent`). All three are editable via the Customizer and exposed as CSS custom properties.
 - **Typography:** Manrope for headings, Inter for body text (Google Fonts, loaded with `font-display: swap` and a `preconnect` hint).
 - **Motion:** subtle fade-up reveals on scroll and hover micro-interactions only; everything is skipped automatically for visitors with `prefers-reduced-motion: reduce`.
 

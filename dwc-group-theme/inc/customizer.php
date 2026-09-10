@@ -49,7 +49,7 @@ function dwc_group_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'dwc_color_primary',
 		array(
-			'default'           => '#0a1a33',
+			'default'           => '#17140f',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'refresh',
 		)
@@ -59,7 +59,7 @@ function dwc_group_customize_register( $wp_customize ) {
 			$wp_customize,
 			'dwc_color_primary',
 			array(
-				'label'   => __( 'Primary Color (deep navy)', 'dwc-group' ),
+				'label'   => __( 'Primary Color (near-black ink)', 'dwc-group' ),
 				'section' => 'dwc_brand',
 			)
 		)
@@ -68,7 +68,7 @@ function dwc_group_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'dwc_color_accent',
 		array(
-			'default'           => '#2f5fff',
+			'default'           => '#bf5b2e',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'refresh',
 		)
@@ -78,7 +78,7 @@ function dwc_group_customize_register( $wp_customize ) {
 			$wp_customize,
 			'dwc_color_accent',
 			array(
-				'label'   => __( 'Accent Color (restrained electric blue)', 'dwc-group' ),
+				'label'   => __( 'Accent Color (warm copper)', 'dwc-group' ),
 				'section' => 'dwc_brand',
 			)
 		)
@@ -87,7 +87,7 @@ function dwc_group_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'dwc_color_charcoal',
 		array(
-			'default'           => '#1c1f26',
+			'default'           => '#362e27',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'refresh',
 		)
