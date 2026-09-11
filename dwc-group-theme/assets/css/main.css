@@ -488,24 +488,6 @@ body.mobile-nav-open {
 	object-fit: cover;
 }
 
-.hero__grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(4, 1fr);
-	gap: 1px;
-	width: 100%;
-	height: 100%;
-	background: rgba(255, 255, 255, 0.08);
-}
-
-.hero__grid span {
-	background: linear-gradient(150deg, rgba(191, 91, 46, 0.28), rgba(23, 20, 15, 0.6));
-}
-
-.hero__grid span:nth-child(3n) {
-	background: linear-gradient(150deg, rgba(191, 91, 46, 0.12), rgba(23, 20, 15, 0.75));
-}
-
 /* =========================================================================
    Intro
    ========================================================================= */
@@ -528,22 +510,6 @@ body.mobile-nav-open {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-}
-
-.intro__pattern {
-	width: 100%;
-	height: 100%;
-	background:
-		radial-gradient(circle at 25% 20%, rgba(191, 91, 46, 0.16), transparent 45%),
-		linear-gradient(135deg, var(--dwc-navy), var(--dwc-charcoal));
-	position: relative;
-}
-
-.intro__pattern::before {
-	content: '';
-	position: absolute;
-	inset: 12%;
-	border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .intro__text {

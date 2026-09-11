@@ -31,14 +31,11 @@ $publications_page = get_page_by_path( 'publications' );
 			</div>
 		</div>
 
-		<div class="hero__visual" aria-hidden="<?php echo $hero_image_id ? 'false' : 'true'; ?>">
+		<div class="hero__visual">
 			<?php if ( $hero_image_id ) : ?>
 				<?php echo wp_get_attachment_image( $hero_image_id, 'dwc-wide', false, array( 'loading' => 'eager', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php else : ?>
-				<div class="hero__grid" role="presentation">
-					<span></span><span></span><span></span><span></span>
-					<span></span><span></span><span></span><span></span>
-				</div>
+				<img src="<?php echo esc_url( DWC_GROUP_URI . '/assets/images/hero.webp' ); ?>" alt="" loading="eager" />
 			<?php endif; ?>
 		</div>
 	</div>

@@ -25,7 +25,7 @@ $stats       = array(
 			<?php if ( $image_id ) : ?>
 				<?php echo wp_get_attachment_image( $image_id, 'dwc-wide', false, array( 'loading' => 'lazy', 'alt' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php else : ?>
-				<div class="intro__pattern" aria-hidden="true"></div>
+				<img src="<?php echo esc_url( DWC_GROUP_URI . '/assets/images/intro.webp' ); ?>" alt="" loading="lazy" />
 			<?php endif; ?>
 		</div>
 
