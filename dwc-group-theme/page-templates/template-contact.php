@@ -11,7 +11,8 @@
 
 get_header();
 
-$email = get_theme_mod( 'dwc_contact_email', 'info@digitalwrk.co' );
+// Not displayed on the page -- only used as the inbox that form
+// submissions get emailed to (see inc/contact-form.php).
 $phone = get_theme_mod( 'dwc_contact_phone' );
 $area  = get_theme_mod( 'dwc_office_area' );
 ?>
@@ -43,12 +44,6 @@ $area  = get_theme_mod( 'dwc_office_area' );
 			<aside class="contact-page__details">
 				<h2><?php esc_html_e( 'Contact Details', 'dwc-group' ); ?></h2>
 				<ul class="contact-details">
-					<?php if ( $email ) : ?>
-						<li>
-							<span class="contact-details__label"><?php esc_html_e( 'Email', 'dwc-group' ); ?></span>
-							<a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
-						</li>
-					<?php endif; ?>
 					<?php if ( $phone ) : ?>
 						<li>
 							<span class="contact-details__label"><?php esc_html_e( 'Phone', 'dwc-group' ); ?></span>
@@ -63,8 +58,8 @@ $area  = get_theme_mod( 'dwc_office_area' );
 					<?php endif; ?>
 				</ul>
 
-				<?php if ( ! $email && ! $phone && ! $area ) : ?>
-					<p class="contact-details__empty"><?php esc_html_e( 'Add your email, phone, and service area in Appearance > Customize > DWC Group Settings > Contact Details.', 'dwc-group' ); ?></p>
+				<?php if ( ! $phone && ! $area ) : ?>
+					<p class="contact-details__empty"><?php esc_html_e( 'Add a phone number or service area in Appearance > Customize > DWC Group Settings > Contact Details.', 'dwc-group' ); ?></p>
 				<?php endif; ?>
 
 				<?php $social = dwc_group_social_links(); ?>
