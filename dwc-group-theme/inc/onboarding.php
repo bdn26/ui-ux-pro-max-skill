@@ -123,8 +123,29 @@ function dwc_group_run_onboarding() {
 	dwc_group_seed_product_categories();
 
 	update_option( 'dwc_group_onboarded', 1 );
+
+	// The pages/CPT posts above were inserted directly, bypassing the normal
+	// editor flow that would otherwise trigger this -- without it, every URL
+	// except the static front page 404s until something flushes the rewrite
+	// rules (e.g. visiting Settings > Permalinks and clicking Save).
+	flush_rewrite_rules();
 }
 add_action( 'after_switch_theme', 'dwc_group_run_onboarding' );
+
+/**
+ * Same reasoning as dwc_group_repair_page_templates() below: a plain file
+ * overwrite never fires after_switch_theme, so a site whose rewrite rules
+ * were never flushed (every page 404s except the front page) would stay
+ * broken even once this fix ships. Runs once on any admin page load.
+ */
+function dwc_group_flush_rewrite_rules_once() {
+	if ( get_option( 'dwc_group_rewrites_flushed' ) ) {
+		return;
+	}
+	flush_rewrite_rules();
+	update_option( 'dwc_group_rewrites_flushed', 1 );
+}
+add_action( 'admin_init', 'dwc_group_flush_rewrite_rules_once' );
 
 /**
  * Self-healing template repair, independent of after_switch_theme.
