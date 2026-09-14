@@ -1,11 +1,19 @@
 <?php
 /**
- * One-time setup that runs the first time the theme is activated on a clean
- * WordPress install: creates the core pages with the right templates, a
- * primary menu, a static front page, four starter Service entries (with the
- * exact copy from the brand brief), and -- if WooCommerce is active -- the
+ * Site setup: creates the core pages with the right templates, a primary
+ * menu, a static front page, four starter Service entries (with the exact
+ * copy from the brand brief), and -- if WooCommerce is active -- the
  * Publications product categories. Everything created here is ordinary,
- * fully editable WordPress content; nothing here runs again once done.
+ * fully editable WordPress content.
+ *
+ * Every step is idempotent (existing pages are only backfilled, never
+ * overwritten; services/categories are skipped once any exist), so this is
+ * safe to call repeatedly -- which matters because it's triggered from two
+ * places: once on an actual theme activation (after_switch_theme), and once
+ * self-healing on any admin page load for sites where that never fired (a
+ * plain file overwrite of an already-active theme, or an earlier version of
+ * this setup routine that failed partway through) -- see the bottom of this
+ * file for both hooks.
  *
  * @package DWC_Group
  */
@@ -25,11 +33,7 @@ function dwc_group_page_has_no_template( $post_id ) {
 	return in_array( $template, array( '', 'default' ), true );
 }
 
-function dwc_group_run_onboarding() {
-	if ( get_option( 'dwc_group_onboarded' ) ) {
-		return;
-	}
-
+function dwc_group_setup_site() {
 	$pages = array(
 		'home' => array(
 			'title'   => __( 'Home', 'dwc-group' ),
@@ -122,62 +126,34 @@ function dwc_group_run_onboarding() {
 	dwc_group_seed_services();
 	dwc_group_seed_product_categories();
 
-	update_option( 'dwc_group_onboarded', 1 );
-
-	// The pages/CPT posts above were inserted directly, bypassing the normal
+	// The pages/CPT posts above are inserted directly, bypassing the normal
 	// editor flow that would otherwise trigger this -- without it, every URL
 	// except the static front page 404s until something flushes the rewrite
 	// rules (e.g. visiting Settings > Permalinks and clicking Save).
 	flush_rewrite_rules();
 }
-add_action( 'after_switch_theme', 'dwc_group_run_onboarding' );
+add_action( 'after_switch_theme', 'dwc_group_setup_site' );
 
 /**
- * Same reasoning as dwc_group_repair_page_templates() below: a plain file
- * overwrite never fires after_switch_theme, so a site whose rewrite rules
- * were never flushed (every page 404s except the front page) would stay
- * broken even once this fix ships. Runs once on any admin page load.
- */
-function dwc_group_flush_rewrite_rules_once() {
-	if ( get_option( 'dwc_group_rewrites_flushed' ) ) {
-		return;
-	}
-	flush_rewrite_rules();
-	update_option( 'dwc_group_rewrites_flushed', 1 );
-}
-add_action( 'admin_init', 'dwc_group_flush_rewrite_rules_once' );
-
-/**
- * Self-healing template repair, independent of after_switch_theme.
+ * Self-healing entry point, independent of after_switch_theme.
  *
  * after_switch_theme only fires when WordPress actually switches the active
- * theme -- re-uploading theme files over an already-active theme (the normal
- * "update via zip" or FTP-overwrite path) never fires it, so a site stuck
- * with un-templated pages (see dwc_group_run_onboarding()) would stay broken
- * even after the underlying bug is fixed. This runs once on any admin page
- * load instead, so deploying the fix is enough on its own.
+ * theme. A plain file overwrite of an already-active theme -- the normal way
+ * to deploy an update via FTP or re-uploading the zip -- never fires it, so
+ * a site that never successfully completed setup (or completed it before a
+ * bug in an earlier version of this routine was fixed) stays broken forever
+ * without this: it runs the same, fully idempotent dwc_group_setup_site()
+ * once on the next admin page load, so deploying a fix is enough on its own
+ * -- no reactivating, no manual permalink flush, no hand-editing pages.
  */
-function dwc_group_repair_page_templates() {
-	if ( get_option( 'dwc_group_templates_repaired_v2' ) ) {
+function dwc_group_self_heal() {
+	if ( get_option( 'dwc_group_self_healed_v3' ) ) {
 		return;
 	}
-
-	$template_map = array(
-		'about-us' => 'page-templates/template-about.php',
-		'services' => 'page-templates/template-services.php',
-		'contact'  => 'page-templates/template-contact.php',
-	);
-
-	foreach ( $template_map as $slug => $template ) {
-		$page = get_page_by_path( $slug );
-		if ( $page && dwc_group_page_has_no_template( $page->ID ) ) {
-			update_post_meta( $page->ID, '_wp_page_template', $template );
-		}
-	}
-
-	update_option( 'dwc_group_templates_repaired_v2', 1 );
+	dwc_group_setup_site();
+	update_option( 'dwc_group_self_healed_v3', 1 );
 }
-add_action( 'admin_init', 'dwc_group_repair_page_templates' );
+add_action( 'admin_init', 'dwc_group_self_heal' );
 
 function dwc_group_create_primary_menu( $page_ids ) {
 	$menu_name = __( 'Primary Navigation', 'dwc-group' );
