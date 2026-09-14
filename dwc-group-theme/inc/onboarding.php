@@ -14,6 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * True when a page has no meaningful custom template assigned. WordPress
+ * stores an unset template as an empty string, but the editor's "Default
+ * template" option explicitly saves the literal string "default" -- both
+ * mean "not one of ours" and should be treated the same way.
+ */
+function dwc_group_page_has_no_template( $post_id ) {
+	$template = get_page_template_slug( $post_id );
+	return in_array( $template, array( '', 'default' ), true );
+}
+
 function dwc_group_run_onboarding() {
 	if ( get_option( 'dwc_group_onboarded' ) ) {
 		return;
@@ -60,7 +71,7 @@ function dwc_group_run_onboarding() {
 			// what makes it render blank. Assign the template whenever the
 			// page isn't already using one, and backfill empty content, but
 			// never touch a page the site owner has already customized.
-			if ( $data['template'] && ! get_page_template_slug( $existing->ID ) ) {
+			if ( $data['template'] && dwc_group_page_has_no_template( $existing->ID ) ) {
 				update_post_meta( $existing->ID, '_wp_page_template', $data['template'] );
 			}
 			if ( $data['content'] && '' === trim( $existing->post_content ) ) {
@@ -126,7 +137,7 @@ add_action( 'after_switch_theme', 'dwc_group_run_onboarding' );
  * load instead, so deploying the fix is enough on its own.
  */
 function dwc_group_repair_page_templates() {
-	if ( get_option( 'dwc_group_templates_repaired' ) ) {
+	if ( get_option( 'dwc_group_templates_repaired_v2' ) ) {
 		return;
 	}
 
@@ -138,12 +149,12 @@ function dwc_group_repair_page_templates() {
 
 	foreach ( $template_map as $slug => $template ) {
 		$page = get_page_by_path( $slug );
-		if ( $page && ! get_page_template_slug( $page->ID ) ) {
+		if ( $page && dwc_group_page_has_no_template( $page->ID ) ) {
 			update_post_meta( $page->ID, '_wp_page_template', $template );
 		}
 	}
 
-	update_option( 'dwc_group_templates_repaired', 1 );
+	update_option( 'dwc_group_templates_repaired_v2', 1 );
 }
 add_action( 'admin_init', 'dwc_group_repair_page_templates' );
 
