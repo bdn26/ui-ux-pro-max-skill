@@ -107,11 +107,7 @@ function dwc_group_setup_site() {
 		}
 	}
 
-	// If WooCommerce is active, point Publications at the Shop page instead
-	// of a plain page so WooCommerce keeps managing it.
-	if ( class_exists( 'WooCommerce' ) && isset( $page_ids['publications'] ) ) {
-		update_option( 'woocommerce_shop_page_id', $page_ids['publications'] );
-	}
+	dwc_group_point_shop_page_at_publications();
 
 	// Static front page.
 	if ( isset( $page_ids['home'] ) ) {
@@ -294,10 +290,31 @@ function dwc_group_seed_product_categories() {
 }
 
 /**
+ * Point WooCommerce's "Shop page" setting at the Publications page, so
+ * products actually show up at /publications/ instead of whatever default
+ * "Shop" page WooCommerce created on its own during its own activation.
+ * Safe/cheap to call on every WooCommerce load: it only writes the option
+ * when it's not already correct, which matters because WooCommerce can be
+ * activated before or after this theme in either order, and either order
+ * needs to end up pointing at the same page.
+ */
+function dwc_group_point_shop_page_at_publications() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return;
+	}
+	$publications = get_page_by_path( 'publications' );
+	if ( $publications && (int) get_option( 'woocommerce_shop_page_id' ) !== $publications->ID ) {
+		update_option( 'woocommerce_shop_page_id', $publications->ID );
+		flush_rewrite_rules();
+	}
+}
+
+/**
  * If WooCommerce is activated after the theme (a very common order of
- * operations), seed the product categories then too.
+ * operations), seed the product categories and fix the shop page then too.
  */
 function dwc_group_on_woocommerce_loaded() {
 	dwc_group_seed_product_categories();
+	dwc_group_point_shop_page_at_publications();
 }
 add_action( 'woocommerce_loaded', 'dwc_group_on_woocommerce_loaded' );
