@@ -115,6 +115,38 @@ function dwc_group_run_onboarding() {
 }
 add_action( 'after_switch_theme', 'dwc_group_run_onboarding' );
 
+/**
+ * Self-healing template repair, independent of after_switch_theme.
+ *
+ * after_switch_theme only fires when WordPress actually switches the active
+ * theme -- re-uploading theme files over an already-active theme (the normal
+ * "update via zip" or FTP-overwrite path) never fires it, so a site stuck
+ * with un-templated pages (see dwc_group_run_onboarding()) would stay broken
+ * even after the underlying bug is fixed. This runs once on any admin page
+ * load instead, so deploying the fix is enough on its own.
+ */
+function dwc_group_repair_page_templates() {
+	if ( get_option( 'dwc_group_templates_repaired' ) ) {
+		return;
+	}
+
+	$template_map = array(
+		'about-us' => 'page-templates/template-about.php',
+		'services' => 'page-templates/template-services.php',
+		'contact'  => 'page-templates/template-contact.php',
+	);
+
+	foreach ( $template_map as $slug => $template ) {
+		$page = get_page_by_path( $slug );
+		if ( $page && ! get_page_template_slug( $page->ID ) ) {
+			update_post_meta( $page->ID, '_wp_page_template', $template );
+		}
+	}
+
+	update_option( 'dwc_group_templates_repaired', 1 );
+}
+add_action( 'admin_init', 'dwc_group_repair_page_templates' );
+
 function dwc_group_create_primary_menu( $page_ids ) {
 	$menu_name = __( 'Primary Navigation', 'dwc-group' );
 	$menu_exists = wp_get_nav_menu_object( $menu_name );
