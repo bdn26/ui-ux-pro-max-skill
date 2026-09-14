@@ -53,6 +53,24 @@ function dwc_group_run_onboarding() {
 		$existing = get_page_by_path( $slug );
 		if ( $existing ) {
 			$page_ids[ $slug ] = $existing->ID;
+
+			// A page can already exist at this slug (a default page shipped by
+			// the host/installer, or a page created before this theme was
+			// active) without ever having our template assigned -- that's
+			// what makes it render blank. Assign the template whenever the
+			// page isn't already using one, and backfill empty content, but
+			// never touch a page the site owner has already customized.
+			if ( $data['template'] && ! get_page_template_slug( $existing->ID ) ) {
+				update_post_meta( $existing->ID, '_wp_page_template', $data['template'] );
+			}
+			if ( $data['content'] && '' === trim( $existing->post_content ) ) {
+				wp_update_post(
+					array(
+						'ID'           => $existing->ID,
+						'post_content' => $data['content'],
+					)
+				);
+			}
 			continue;
 		}
 

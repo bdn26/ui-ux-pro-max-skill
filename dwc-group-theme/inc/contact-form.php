@@ -54,7 +54,7 @@ function dwc_group_handle_contact_submission() {
 		exit;
 	}
 
-	$to = get_theme_mod( 'dwc_contact_email' );
+	$to = get_theme_mod( 'dwc_contact_email', 'info@digitalwrk.co' );
 	if ( ! $to || ! is_email( $to ) ) {
 		$to = get_option( 'admin_email' );
 	}

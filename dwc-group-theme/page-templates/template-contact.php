@@ -11,7 +11,7 @@
 
 get_header();
 
-$email = get_theme_mod( 'dwc_contact_email' );
+$email = get_theme_mod( 'dwc_contact_email', 'info@digitalwrk.co' );
 $phone = get_theme_mod( 'dwc_contact_phone' );
 $area  = get_theme_mod( 'dwc_office_area' );
 ?>

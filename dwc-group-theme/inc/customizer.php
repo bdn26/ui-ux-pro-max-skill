@@ -113,12 +113,12 @@ function dwc_group_customize_register( $wp_customize ) {
 	);
 
 	$contact_fields = array(
-		'dwc_contact_email' => array( __( 'Contact Email', 'dwc-group' ), 'sanitize_email' ),
-		'dwc_contact_phone' => array( __( 'Contact Phone', 'dwc-group' ), 'sanitize_text_field' ),
-		'dwc_office_area'   => array( __( 'Office / Service Area', 'dwc-group' ), 'sanitize_text_field' ),
+		'dwc_contact_email' => array( __( 'Contact Email', 'dwc-group' ), 'sanitize_email', 'info@digitalwrk.co' ),
+		'dwc_contact_phone' => array( __( 'Contact Phone', 'dwc-group' ), 'sanitize_text_field', '' ),
+		'dwc_office_area'   => array( __( 'Office / Service Area', 'dwc-group' ), 'sanitize_text_field', '' ),
 	);
 	foreach ( $contact_fields as $id => $field ) {
-		$wp_customize->add_setting( $id, array( 'default' => '', 'sanitize_callback' => $field[1] ) );
+		$wp_customize->add_setting( $id, array( 'default' => $field[2], 'sanitize_callback' => $field[1] ) );
 		$wp_customize->add_control( $id, array( 'label' => $field[0], 'section' => 'dwc_contact', 'type' => 'text' ) );
 	}
 
