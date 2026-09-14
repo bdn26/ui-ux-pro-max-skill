@@ -13,8 +13,10 @@ get_header();
 
 // Not displayed on the page -- only used as the inbox that form
 // submissions get emailed to (see inc/contact-form.php).
-$phone = get_theme_mod( 'dwc_contact_phone' );
-$area  = get_theme_mod( 'dwc_office_area' );
+$phone       = get_theme_mod( 'dwc_contact_phone' );
+$area        = get_theme_mod( 'dwc_office_area' );
+$social      = dwc_group_social_links();
+$has_details = $phone || $area || $social;
 ?>
 
 <main id="main" class="site-main">
@@ -35,42 +37,39 @@ $area  = get_theme_mod( 'dwc_office_area' );
 	?>
 
 	<div class="container contact-page">
-		<div class="contact-page__grid">
+		<div class="contact-page__grid <?php echo $has_details ? '' : 'contact-page__grid--solo'; ?>">
 
 			<div class="contact-page__form">
 				<?php get_template_part( 'template-parts/components/contact-form' ); ?>
 			</div>
 
-			<aside class="contact-page__details">
-				<h2><?php esc_html_e( 'Contact Details', 'dwc-group' ); ?></h2>
-				<ul class="contact-details">
-					<?php if ( $phone ) : ?>
-						<li>
-							<span class="contact-details__label"><?php esc_html_e( 'Phone', 'dwc-group' ); ?></span>
-							<a href="tel:<?php echo esc_attr( preg_replace( '/[^+0-9]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
-						</li>
-					<?php endif; ?>
-					<?php if ( $area ) : ?>
-						<li>
-							<span class="contact-details__label"><?php esc_html_e( 'Office / Service Area', 'dwc-group' ); ?></span>
-							<span><?php echo esc_html( $area ); ?></span>
-						</li>
-					<?php endif; ?>
-				</ul>
-
-				<?php if ( ! $phone && ! $area ) : ?>
-					<p class="contact-details__empty"><?php esc_html_e( 'Add a phone number or service area in Appearance > Customize > DWC Group Settings > Contact Details.', 'dwc-group' ); ?></p>
-				<?php endif; ?>
-
-				<?php $social = dwc_group_social_links(); ?>
-				<?php if ( $social ) : ?>
-					<ul class="footer-social contact-page__social" aria-label="<?php esc_attr_e( 'Social media', 'dwc-group' ); ?>">
-						<?php foreach ( $social as $network => $url ) : ?>
-							<li><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( ucfirst( $network ) ); ?></a></li>
-						<?php endforeach; ?>
+			<?php if ( $has_details ) : ?>
+				<aside class="contact-page__details">
+					<h2><?php esc_html_e( 'Contact Details', 'dwc-group' ); ?></h2>
+					<ul class="contact-details">
+						<?php if ( $phone ) : ?>
+							<li>
+								<span class="contact-details__label"><?php esc_html_e( 'Phone', 'dwc-group' ); ?></span>
+								<a href="tel:<?php echo esc_attr( preg_replace( '/[^+0-9]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
+							</li>
+						<?php endif; ?>
+						<?php if ( $area ) : ?>
+							<li>
+								<span class="contact-details__label"><?php esc_html_e( 'Office / Service Area', 'dwc-group' ); ?></span>
+								<span><?php echo esc_html( $area ); ?></span>
+							</li>
+						<?php endif; ?>
 					</ul>
-				<?php endif; ?>
-			</aside>
+
+					<?php if ( $social ) : ?>
+						<ul class="footer-social contact-page__social" aria-label="<?php esc_attr_e( 'Social media', 'dwc-group' ); ?>">
+							<?php foreach ( $social as $network => $url ) : ?>
+								<li><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( ucfirst( $network ) ); ?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</aside>
+			<?php endif; ?>
 
 		</div>
 	</div>

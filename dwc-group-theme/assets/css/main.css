@@ -1224,6 +1224,12 @@ body.mobile-nav-open {
 	align-items: start;
 }
 
+.contact-page__grid--solo {
+	grid-template-columns: 1fr;
+	max-width: 760px;
+	margin-inline: auto;
+}
+
 .contact-page__details {
 	background: var(--dwc-gray-50);
 	border-radius: var(--radius-md);
